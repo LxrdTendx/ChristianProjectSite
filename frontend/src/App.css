@@ -1,0 +1,853 @@
+/* Общие стили для приложения */
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@200..800&display=swap');
+
+
+
+/* Масштабирование для экранов менее 1920px */
+
+
+@media (max-width: 1550px) {
+  .fixed-width-container {
+    /* transform: scale(0.8); */
+    zoom: 90%;
+    width: 100%;
+    
+  }
+}
+
+
+
+.fixed-width-container {
+  width: 100%;
+  margin: 0 auto;
+  flex: 1; 
+
+}
+
+
+
+.App{
+  height: 100% !important;
+  background-color: black;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Вертикальный стек */
+  min-height: 100vh;
+}
+
+.firstpage {
+  height: 877px;
+  text-align: center;
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем контент по горизонтали */
+  background-image: url('./assets/theme.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Стили для хедера */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Распределяем элементы */
+  width: 100%;
+  max-width: calc(100% - 200px); /* Устанавливаем максимальную ширину для хедера */
+  height: 66px;
+  padding: 40px 20px 0px;
+}
+
+/* Стили для логотипа */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  max-height: 55px;
+}
+
+/* Стили для навигации */
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-grow: 1; /* Позволяет блоку навигации растягиваться */
+  justify-content: center; /* Центрируем кнопки навигации */
+}
+
+.nav-button {
+  transition: 0.5s;
+  border: none;
+  background: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 117%;
+  color: #fff;
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-button:hover {
+  color: white;
+
+}
+
+/* Стили для кнопки "Связаться с нами" */
+.contact-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.contact-button {
+
+    transition: 0.5s;
+    cursor: pointer;
+    border: 0.50px solid rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    padding: 9px 93px;
+    height: 60px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 149%;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.86);
+    white-space: nowrap;
+    background-color: unset;
+
+}
+
+.contact-button:hover {
+  background-color: #fff;
+  color: black;
+}
+
+hr{
+    opacity: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: calc(100% - 200px);
+    height: 0px;
+}
+
+.title-page-block{
+  margin: 0; /* Отменяем все отступы */
+  margin-top: 200px;
+  padding: 0; /* Отменяем внутренние отступы */
+  text-align: left;
+  width: 100%; /* Устанавливаем ширину блока на 100% */
+  max-width: calc(100% - 200px);
+
+}
+.title-page {
+  text-align: left;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 103%;
+  text-transform: uppercase;
+  color: #fff;
+}
+.subtitle-page{
+  margin-top: 17px;
+  width: 45%;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 141%;
+  color: rgba(255, 255, 255, 0.73);
+}
+.title-button{
+  margin-top: 66px;
+  transition: 1s ease;
+  background: linear-gradient(77deg, #bda57e 0%, #a8916b 65.5%, #bda57e 95%);
+  width: 325px;
+  height: 84px; 
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.86);
+
+
+
+}
+.title-button:hover {
+  background-color: unset !important; /* Белый фон при наведении */
+  color: #BDA57E !important; /* Черный текст при наведении */
+  border-color: #BDA57E !important; /* Граница тоже становится белой */
+}
+
+.secondpage{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: black;
+  width: 100%;
+}
+.second-main-block{
+  justify-content: space-between;
+  display: flex;
+  height: 100%;
+  width: calc(100% - 200px);
+}
+.text-link{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 149%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+}
+.s-b{
+  width: 50%;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 132%;
+  text-transform: uppercase;
+  color: white;
+}
+
+.f-b{
+
+}
+.text-color{
+  color:#bda57e;
+}
+
+.f-b-p{
+  margin-top: 130px;
+  width: 270px;
+  height: 333px;
+  background-image: url('./assets/photo1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.s-b p{
+  margin: 0;
+}
+.main-text{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 149%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: none;
+}
+
+.link-button{
+  text-decoration: underline;
+  padding: 0 !important;
+  font-family: "Manrope", sans-serif !important; 
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  line-height: 150% !important;
+  letter-spacing: -0.02em;
+  color: rgba(189, 165, 126, 0.75);
+}
+
+.t-b-p{
+  margin-top: 250px;
+  width: 391px;
+  height: 431px;
+  background-image: url('./assets/photo2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.thirdpage{
+  margin-top: 200px;
+  display: flex;
+  width: 100%;
+  height: 800px;
+  justify-content: space-between;
+
+}
+
+.left-block{
+  border-radius: 0 5px 5px 0;
+  width: 807px;
+  height: 822px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background: linear-gradient(197deg, rgba(0, 0, 0, 0) 0%, #000 100%), url("./assets/third-pg.png");
+}
+
+.text-link-third{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 149%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 100px;
+  margin-top: 40px;
+}
+.third-page-name{
+  width: 219px;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 115%;
+  text-transform: uppercase;
+  color: #fff;
+  margin-left: 100px;
+  margin-top: 30px;
+  }
+
+.third-text-color, .right-block p{
+  width: 85%;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 132%;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+}
+.right-block{
+  width: 50%;
+}
+.right-block .main-text{
+  text-transform: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 136%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+.third-text-color{
+  color:#bda57e;
+}
+
+.middle-text-box{
+  width: 75% !important;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 24px !important;
+  line-height: 154%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 20px 0 0 35px !important;
+}
+
+.middle-box{
+  margin-top: 53px;
+  border-radius: 5px;
+  width: 85%;
+  height: 150px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #bda57e, rgba(189, 165, 126, 0)) 1;
+}
+
+.forthpage{
+  margin-top: 154px;
+  width: 100%;
+  height: 558px;
+  background-image: url('./assets/forth-pg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.forth-main-cc{
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 76px;
+  line-height: 125%;
+  text-transform: uppercase;
+  background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0.3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.forth-text-block{
+  padding-top: 100px;
+  width: 800px;
+  margin-left: 122px;
+  align-items: center;
+}
+.author{
+  width: 284px;
+  margin: 16px auto 0 auto;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 103%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.fifthpage{
+  margin-left: 100px;
+  margin-top: 200px;
+  width: 100%;
+  height: 558px;
+}
+
+.info-navigation{
+  display: flex;
+  width: calc(100% - 200px);
+}
+
+.services-link{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 149%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+}
+
+.fifth-title{
+  margin-left: 138px;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+
+
+
+.sixpage{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: black;
+  width: 100%;
+  height: 470px;
+
+}
+
+.six-main-block{
+  justify-content: space-between;
+  display: flex;
+  height: 100%;
+  width: calc(100% - 200px);
+}
+.left-b{
+  width: 50%;
+}
+
+.left-b-title{
+  margin-top: 45px;
+  font-family: "Forum", sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 110%;
+  text-transform: uppercase;
+  color: #fff;
+}
+.left-b-text{
+  margin-top: 44px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 0.7);
+  width: 630px;
+}
+
+.right-b{
+  width: 50%;
+}
+
+/* В файле CSS */
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #bda57e !important;
+  border-color: #bda57e !important;
+  border-color: #bda57e !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner:after {
+  border-color: white !important; /* Цвет галочки внутри, можно оставить белым для контраста */
+}
+
+.ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important; /* Пример цвета */
+  opacity: 1; /* Устанавливаем opacity, чтобы не было полупрозрачности */
+}
+
+.sevenpage{
+  align-items: center;
+  background: black;
+  width: 100%;
+  height: calc(681px + 153px);
+}
+
+/* App.css */
+
+.sevenpage .map {
+  position: relative;
+  width: 100%;
+  height: 681px; /* Задайте высоту карты как у iframe */
+}
+
+.sevenpage .map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.sevenpage .map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 5, 6, 0.64); /* Цвет наложения */
+  pointer-events: none; /* Чтобы наложение не блокировало клики по карте */
+}
+
+.sevenpage .map-content {
+  position: absolute;
+  top: 150px;   /* Центрируем по вертикали */
+  left: 100px;  /* Центрируем по горизонтали */
+  background: #070506;
+  width: 435px;
+  height: 367px;
+  z-index: 1; /* Устанавливаем z-index выше overlay, чтобы этот div был виден */
+}
+.content-info{
+  position: relative;
+  margin-left: 20px;
+  margin-top: 16px;
+  border: 1.50px solid #a8916b;
+  width: 395px;
+  height: 333px;
+}
+.info-text{
+  margin: 25px;
+  font-family: "Forum", sans-serif;
+font-weight: 400;
+font-size: 38px;
+line-height: 145%;
+text-transform: uppercase;
+color: #fff;
+}
+
+.contact-items {
+  list-style-type: disc; /* Используем маркеры в виде точек */
+  margin-left: 25px; /* Отступ слева, чтобы маркеры не сливались с текстом */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 29px; /* Интервал между пунктами списка */
+}
+
+.contact-item {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.carousel-card {
+  gap: 54px;
+  display: flex;
+  width: calc(100% - 200px);
+  overflow-x: auto;
+  scroll-behavior: smooth; /* плавная прокрутка */
+  scrollbar-width: none; /* Для Firefox */
+}
+
+.carousel-card::-webkit-scrollbar {
+  display: none; /* Для Chrome, Safari */
+}
+
+.card-item {
+  flex: 0 0 auto; /* Предотвращает изменение ширины */
+  width: 371px; /* Фиксированная ширина карточки */
+  height: 491px;
+  border: 0.50px solid rgba(255, 255, 255, 0.54);
+  border-radius: 5px;
+}
+
+.card-item-photo{
+  width: 331px;
+  height: 316px;
+  /* background-image: url('./assets/service-photo.png'); */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+.card-name{
+  font-family: "Manrope", sans-serif;
+  max-width: 331px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 112%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.card-button{
+  margin-left: 20px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 149%;
+  letter-spacing: -0.02em;
+  color: #a8916b;
+  text-decoration: none;
+  max-width: 331px !important;
+  height: 27px;
+  margin-top: 22px;
+  align-items:start !important;
+  justify-content: unset;
+  padding: 0 !important;
+}
+
+
+.footer{
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  max-width: calc(100% - 200px); /* Устанавливаем максимальную ширину для хедера */
+  height: 66px;
+  padding: 40px 20px 0px;
+}
+.footer nav{
+  gap: 53px;
+  margin-left: 50px;
+  flex-grow: 0;
+}
+.footer nav .nav-button{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 117%;
+  color: #fff;
+}
+.copyright{
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 128%;
+  color: #fff;
+  margin-left: auto; /* Отталкивает блок с copyright к правому краю */
+  
+}
+
+.full-block{
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* Плавное изменение высоты и прозрачности */
+}
+
+
+
+@media (max-width: 850px) {
+  .nav, .contact-button-container{
+    display: none;
+  }
+  .header, hr{
+    max-width: calc(100% - 23px);
+  }
+  hr{
+    width: calc(100% - 23px);
+  }
+  .title-page-block{
+    max-width: calc(100% - 28px);
+    margin-top: 47px;
+  }
+  .title-page{
+    font-family: "Forum", sans-serif;
+    font-weight: 400;
+    line-height: 122%;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .subtitle-page{
+    margin-top: 77px;
+    width: 100%;
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 155%;
+    color: rgba(255, 255, 255, 0.73);
+  }
+  .title-button{
+    display: none;
+  }
+  .t-b{
+    display: none;
+  }
+  .secondpage{
+    margin-top: 100px;
+  }
+  .second-main-block{
+    display: block;
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+  }
+  .f-b-p{
+    display: none;
+  }
+  .s-b{
+    font-size: 36px;
+    width: 100%;
+  }
+  .main-text{
+    font-size: 20px;
+  }
+  .thirdpage{
+    display: block;
+  }
+  .left-block{
+    background: none;
+    height:auto;
+    margin-left: 0;
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+  }
+  .text-link-third{
+    margin-left: 28px;
+    margin-right: auto;
+  
+  }
+  .thirdpage{
+    margin-top: 100px;
+    height: auto;
+  }
+  .third-page-name{
+    display: none;
+  }
+  .right-block {
+    margin-left: 28px;
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+  }
+  .third-text-color, .right-block p {
+    font-size: 36px;
+    width: 100%;
+  }
+  .middle-box{
+    height: unset;
+    width: 100%;
+  }
+  .forth-text-block{
+    margin: 0;
+    margin-left: 28px;
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+  }
+  .forthpage{
+    height: unset;
+  }
+  .forth-main-cc {
+    font-size: 40px;
+  
+  }
+  .author{
+    font-size: 22px;
+    width: 48%;
+  }
+  .right-block .main-text {
+    font-size: 20px;
+  }
+  .fifthpage {
+    margin-left: 28px;
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+    margin-top: 100px;
+  }
+  .info-navigation {
+    display: block;
+    width: 100%;
+  }
+  .carousel-card{
+    gap: 35px;
+    width: 100%;
+  }
+  .fifth-title {
+    width: 100%;
+    margin-left: unset;
+  }
+  .sixpage{
+    height: unset;
+  }
+  .six-main-block{
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+    height: unset;
+    display: block;
+  }
+  .left-b{
+    width: 100%;
+  }
+  .left-b-title{
+    font-size: 40px;
+  }
+  .left-b-text{
+    font-size: 20px;
+    width: 100%;
+  }
+  .right-b{
+    width: 100%;
+  }
+  .sevenpage .map-content {
+    left: 5%;
+  }
+  .footer{
+    max-width: calc(100% - 56px);
+    width: calc(100% - 56px);
+  }
+  .copyright{
+    font-size: 12px;
+  }
+  .fifthpage{
+    height: unset;
+  }
+}
+
+/* Скрываем обычную навигацию на мобильных устройствах */
+@media (max-width: 700px) {
+  .nav, .contact-button-container {
+    display: none; /* Скрыть обычное меню и кнопку "Связаться с нами" */
+  }
+
+  .menu-button {
+    display: block; /* Показываем бургер-меню */
+    font-size: 24px;
+    color: white;
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    z-index: 1000;
+  }
+}
+
+/* Для десктопа скрываем кнопку бургер-меню */
+@media (min-width: 701px) {
+  .menu-button {
+    display: none;
+  }
+}
+
+.ant-drawer-close{
+  color: white !important;
+}
+
