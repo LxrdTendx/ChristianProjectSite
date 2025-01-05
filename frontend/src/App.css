@@ -838,6 +838,9 @@ color: #fff;
     top: 50px;
     z-index: 1000;
   }
+  .contact-button {
+    height: 30px;
+  }
 }
 
 /* Для десктопа скрываем кнопку бургер-меню */
@@ -849,5 +852,10 @@ color: #fff;
 
 .ant-drawer-close{
   color: white !important;
+}
+
+.drawer-menu{
+  display: flex;
+  flex-wrap: wrap;
 }
 

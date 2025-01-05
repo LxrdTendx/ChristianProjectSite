@@ -1,24 +1,50 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../App.css';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { Button, Row } from 'antd';
+import { Button, Row, Modal } from 'antd';
+import axios from 'axios';
 
 const FifthPage = () => {
-    const carouselRef = useRef(null); // Ссылка на контейнер карусели
+    const carouselRef = useRef(null);
+    const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null); // Для хранения выбранного продукта
+    const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна
+    const backendURL = "http://127.0.0.1:8000/uploads/";
 
-    // Обработчик кнопки "Влево"
     const handlePrev = () => {
         if (carouselRef.current) {
-            carouselRef.current.scrollLeft -= 600; // Прокрутка влево на 600px
+            carouselRef.current.scrollLeft -= 600;
         }
     };
 
-    // Обработчик кнопки "Вправо"
     const handleNext = () => {
         if (carouselRef.current) {
-            carouselRef.current.scrollLeft += 600; // Прокрутка вправо на 600px
+            carouselRef.current.scrollLeft += 600;
         }
     };
+
+    const openModal = (product) => {
+        setSelectedProduct(product); // Устанавливаем выбранный продукт
+        setIsModalOpen(true); // Открываем модальное окно
+    };
+
+    const closeModal = () => {
+        setSelectedProduct(null); // Сбрасываем выбранный продукт
+        setIsModalOpen(false); // Закрываем модальное окно
+    };
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/products/');
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Ошибка при загрузке продуктов:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     return (
         <div className="fifthpage">
@@ -39,7 +65,7 @@ const FifthPage = () => {
                             width: '50px',
                             height: '50px',
                         }}
-                    ></Button>
+                    />
                     <Button
                         type="primary"
                         icon={<RightOutlined />}
@@ -52,94 +78,63 @@ const FifthPage = () => {
                             width: '50px',
                             height: '50px',
                         }}
-                    ></Button>
+                    />
                 </Row>
             </div>
-
-            {/* Карусельный контейнер */}
             <div
                 className="carousel-card"
-                ref={carouselRef} // Привязываем ссылку на контейнер
+                ref={carouselRef}
                 style={{
-                    
-                    overflowX: 'auto', // Включаем горизонтальную прокрутку
-                    scrollBehavior: 'smooth', // Добавляем плавность прокрутки
-                
+                    overflowX: 'auto',
+                    scrollBehavior: 'smooth',
                 }}
             >
-                {/* Карточка 1 */}
-                <div className="card-item">
+                {products.map((product) => (
                     <div
-                        className="card-item-photo"
-                        style={{
-                            backgroundColor: 'gray',
-                        
-                        }}
-                    ></div>
-                    <div className="card-name">Совершение таинства крещения в храме</div>
-                    <Button type="link" className="card-button">
-                        записаться к нам 🡢
-                    </Button>
-                </div>
-
-                {/* Карточка 2 */}
-                <div className="card-item" >
-                    <div
-                        className="card-item-photo"
-                        style={{
-                            backgroundColor: 'gray',
-                            
-                        }}
-                    ></div>
-                    <div className="card-name">Совершение таинства крещения в храме</div>
-                    <Button type="link" className="card-button">
-                        записаться к нам 🡢
-                    </Button>
-                </div>
-
-                {/* Карточка 3 */}
-                <div className="card-item">
-                    <div
-                        className="card-item-photo"
-                        style={{
-                            backgroundColor: 'gray',
-                            
-                        }}
-                    ></div>
-                    <div className="card-name">Совершение таинства крещения в храме</div>
-                    <Button type="link" className="card-button">
-                        записаться к нам 🡢
-                    </Button>
-                </div>
-                <div className="card-item">
-                    <div
-                        className="card-item-photo"
-                        style={{
-                            backgroundColor: 'gray',
-                            
-                        }}
-                    ></div>
-                    <div className="card-name">Совершение таинства крещения в храме</div>
-                    <Button type="link" className="card-button">
-                        записаться к нам 🡢
-                    </Button>
-                </div>
-                <div className="card-item">
-                    <div
-                        className="card-item-photo"
-                        style={{
-                            backgroundColor: 'gray',
-                            
-                        }}
-                    ></div>
-                    <div className="card-name">Совершение таинства крещения в храме</div>
-                    <Button type="link" className="card-button">
-                        записаться к нам 🡢
-                    </Button>
-                </div>
-                
-                
+                        className="card-item"
+                        key={product.id}
+                        onClick={() => openModal(product)} // Открываем модальное окно при клике
+                    >
+                        <div
+                            className="card-item-photo"
+                            style={{
+                                backgroundImage: `url(${backendURL}${product.image_url})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundColor: 'unset',
+                            }}
+                        />
+                        <div className="card-name">{product.name}</div>
+                        <Button type="link" className="card-button">
+                            записаться к нам 🡢
+                        </Button>
+                    </div>
+                ))}
             </div>
+
+            {/* Модальное окно */}
+            <Modal
+                title={selectedProduct?.name} // Название продукта в заголовке модального окна
+                visible={isModalOpen}
+                onCancel={closeModal} // Закрытие окна
+                footer={null} // Убираем стандартные кнопки "ОК" и "Отмена"
+            >
+                {selectedProduct && (
+                    <div>
+                        <div
+                            style={{
+                                backgroundImage: `url(${backendURL}${selectedProduct.image_url})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                height: '200px',
+                                marginBottom: '16px',
+                            }}
+                        />
+                        <p><strong>Описание:</strong> {selectedProduct.description || 'Описание отсутствует'}</p>
+                        <p><strong>Цена:</strong> {selectedProduct.price ? `${selectedProduct.price} ₽` : 'Цена не указана'}</p>
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 };

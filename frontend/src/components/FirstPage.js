@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import '../App.css';
 import logo from '../assets/logo.png'; // Импорт логотипа
-import { DownloadOutlined, MenuOutlined } from '@ant-design/icons';
-import { Button, Divider, Flex, Radio, Drawer } from 'antd';
+import { MenuOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import { Button, Drawer, BackTop } from 'antd';
 import { Link } from 'react-scroll'; // Импортируем Link из react-scroll
-
 
 const FirstPage = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -28,36 +27,36 @@ const FirstPage = () => {
         </div>
         <nav className="nav">
           <Link
-              to="second-page" // ID целевого блока
-              smooth={true} // Плавная прокрутка
-              duration={500} // Длительность прокрутки (в миллисекундах)
-              className="nav-button"
-            >
-              о монастыре
+            to="second-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+          >
+            о монастыре
           </Link>
           <Link
-              to="fifth-page" // ID целевого блока
-              smooth={true} // Плавная прокрутка
-              duration={500} // Длительность прокрутки (в миллисекундах)
-              className="nav-button"
-            >
-              услуги
+            to="fifth-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+          >
+            услуги
           </Link>
           <Link
-              to="third-page" // ID целевого блока
-              smooth={true} // Плавная прокрутка
-              duration={500} // Длительность прокрутки (в миллисекундах)
-              className="nav-button"
-            >
-              о настоятеле
+            to="third-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+          >
+            о настоятеле
           </Link>
           <Link
-              to="seven-page" // ID целевого блока
-              smooth={true} // Плавная прокрутка
-              duration={500} // Длительность прокрутки (в миллисекундах)
-              className="nav-button"
-            >
-              контакты
+            to="seven-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+          >
+            контакты
           </Link>
         </nav>
         <div className="contact-button-container">
@@ -72,22 +71,62 @@ const FirstPage = () => {
           onClick={showDrawer}
         />
       </header>
-      
+
       <hr />
 
       {/* Drawer для мобильного меню */}
       <Drawer
-        style={{backgroundColor: 'black'}}
+        style={{ backgroundColor: 'black' }}
         placement="right"
         onClose={closeDrawer}
-        visible={drawerVisible}
+        open={drawerVisible} // Используем open вместо visible начиная с Ant Design 4.20.0
       >
         <div className="drawer-menu">
-          <button className="nav-button" onClick={closeDrawer}>о монастыре</button>
-          <button className="nav-button" onClick={closeDrawer}>услуги</button>
-          <button className="nav-button" onClick={closeDrawer}>о настоятеле</button>
-          <button className="nav-button" onClick={closeDrawer}>контакты</button>
-          <button className="contact-button" onClick={closeDrawer}>cвязаться с нами</button>
+          <Link
+            to="second-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+            onClick={closeDrawer}
+          >
+            о монастыре
+          </Link>
+          <Link
+            to="fifth-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+            onClick={closeDrawer}
+          >
+            услуги
+          </Link>
+          <Link
+            to="third-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+            onClick={closeDrawer}
+          >
+            о настоятеле
+          </Link>
+          <Link
+            to="seven-page"
+            smooth={true}
+            duration={500}
+            className="nav-button"
+            onClick={closeDrawer}
+          >
+            контакты
+          </Link>
+          <Link
+            to="contact-form"
+            smooth={true}
+            duration={500}
+            className="contact-button"
+            onClick={closeDrawer}
+          >
+            связаться с нами
+          </Link>
         </div>
       </Drawer>
 
@@ -102,6 +141,21 @@ const FirstPage = () => {
           записаться к нам
         </Button>
       </div>
+
+      {/* Кнопка возврата наверх */}
+      <BackTop>
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<VerticalAlignTopOutlined />}
+          size="large"
+          style={{
+            backgroundColor: '#bda57e',
+            border: 'none',
+            color: 'white',
+          }}
+        />
+      </BackTop>
     </div>
   );
 };
