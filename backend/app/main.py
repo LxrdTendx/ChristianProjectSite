@@ -8,14 +8,20 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqladmin import Admin, ModelView
 from fastapi_storages import FileSystemStorage
 from fastapi_storages.integrations.sqlalchemy import ImageType
+import json
 
 # Инициализация FastAPI
 app = FastAPI()
 
+with open("config.json") as config_file:
+    config = json.load(config_file)
+
+frontend_url = config.get("frontend_url", "http://localhost:3000")  # URL фронтенда из конфигурации
+
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[frontend_url], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
