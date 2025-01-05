@@ -43,10 +43,11 @@ function App() {
 }
 console.log(process.env.REACT_APP_BACKEND_URL);
 
-try {
-  // Ваш код
-} catch (error) {
-  // Логирование ошибки в файл или отправка на сервер
-  console.log("Произошла ошибка, но пользователю ничего не показываем.");
-}
+window.onerror = function (message, source, lineno, colno, error) {
+  // Логировать ошибку или отправить на сервер
+  console.log("Ошибка произошла, но она не будет показана пользователю.");
+  // Возвращаем true, чтобы ошибка не была выведена в консоль
+  return true;
+};
+
 export default App;
