@@ -41,6 +41,12 @@ function App() {
     </div>
   );
 }
+console.log(process.env.REACT_APP_BACKEND_URL);
 
-
+try {
+  // Ваш код
+} catch (error) {
+  // Логирование ошибки в файл или отправка на сервер
+  console.log("Произошла ошибка, но пользователю ничего не показываем.");
+}
 export default App;
