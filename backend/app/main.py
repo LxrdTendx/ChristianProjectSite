@@ -38,7 +38,7 @@ app.add_middleware(
 )
 
 # Настройка базы данных
-DATABASE_URL = "postgresql://postgres:12345@localhost:5432/Christ"
+DATABASE_URL = "postgresql://postgres:12345@localhost:5432/christ"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
