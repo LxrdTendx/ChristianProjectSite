@@ -3,14 +3,14 @@ import '../App.css';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Row, Modal } from 'antd';
 import axios from 'axios';
+import config from './config';
 
 const FifthPage = () => {
     const carouselRef = useRef(null);
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null); // Для хранения выбранного продукта
     const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна
-    const backendURL = `${window.location.protocol}//${window.location.hostname}:8000/uploads/`;
-
+    const backendURL = `${config.backendURL}/uploads/`;
 
     const handlePrev = () => {
         if (carouselRef.current) {
@@ -37,7 +37,7 @@ const FifthPage = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get(`${window.location.protocol}//${window.location.hostname}:8000/products/`);
+                const response = await axios.get(`${config.backendURL}/products/`);
                 setProducts(response.data);
             } catch (error) {
                 console.error('Ошибка при загрузке продуктов:', error);
