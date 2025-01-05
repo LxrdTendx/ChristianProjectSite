@@ -9,7 +9,8 @@ const FifthPage = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null); // Для хранения выбранного продукта
     const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна
-    const backendURL = "http://127.0.0.1:8000/uploads/";
+    const backendURL = `${window.location.protocol}//${window.location.hostname}:8000/uploads/`;
+
 
     const handlePrev = () => {
         if (carouselRef.current) {
@@ -36,7 +37,7 @@ const FifthPage = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/products/');
+                const response = await axios.get(`${window.location.protocol}//${window.location.hostname}:8000/products/`);
                 setProducts(response.data);
             } catch (error) {
                 console.error('Ошибка при загрузке продуктов:', error);
