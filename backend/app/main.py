@@ -13,8 +13,18 @@ import json
 # Инициализация FastAPI
 app = FastAPI()
 
-with open("config.json") as config_file:
-    config = json.load(config_file)
+# Получаем путь к директории текущего скрипта
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Полный путь к config.json
+CONFIG_PATH = os.path.join(BASE_DIR, "config.json")
+
+# Загрузка конфигурации
+try:
+    with open(CONFIG_PATH) as config_file:
+        config = json.load(config_file)
+except FileNotFoundError:
+    raise FileNotFoundError(f"Не удалось найти файл конфигурации: {CONFIG_PATH}")
 
 frontend_url = config.get("frontend_url", "http://localhost:3000")  # URL фронтенда из конфигурации
 
