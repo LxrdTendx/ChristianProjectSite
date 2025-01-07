@@ -132,11 +132,11 @@ const FirstPage = () => {
 
       <div className='title-page-block'>
         <div className='title-page'>
-          Никольский Угрешский <br />мужской монастырь
+          Дом святителя Николая
         </div>
         <div className='subtitle-page'>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et nasc
-        </div>
+        «Весь еси‌ всем вои‌стину помо‌щник, богоно‌се Нико‌лае, я‌ко свободи‌тель, пита‌тель и врач ско‌рый всем земны‌м, на похвалу‌ всех подвизая вопи‌ти к тебе‌ си‌це Ра‌дуйся, Нико‌лае, вели‌кий Чудотво‌рче» <br/> <br/> <i>Акафист свт Николаю</i>     
+</div>
         <Button type="primary" size="large" className='title-button'>
           записаться к нам
         </Button>

@@ -12,9 +12,9 @@ const SixPage = () => {
               остались вопросы?<br/>
               <span style={{ color:'#bda57e' }}>оставьте заявку</span>
             </div>
-            <div className='left-b-text'>
+            {/* <div className='left-b-text'>
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu
-            </div>
+            </div> */}
           </div>
           <div className='right-b'>
             <FormSix />
