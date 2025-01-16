@@ -3,7 +3,9 @@ import '../App.css';
 import logo from '../assets/logo.png'; // Импорт логотипа
 import { MenuOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import { Button, Drawer, BackTop } from 'antd';
-import { Link } from 'react-scroll'; // Импортируем Link из react-scroll
+import { Link as RouterLink } from 'react-router-dom'; // Для навигации на новую страницу
+import { Link as ScrollLink } from 'react-scroll'; // Для скроллинга внутри страницы
+
 
 const FirstPage = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -26,41 +28,49 @@ const FirstPage = () => {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <nav className="nav">
-          <Link
-            to="second-page"
+          {/* Кнопки навигации */}
+          <ScrollLink
+            to="second-page" // ID блока на главной странице
             smooth={true}
             duration={500}
             className="nav-button"
           >
             о монастыре
-          </Link>
-          <Link
-            to="fifth-page"
-            smooth={true}
-            duration={500}
-            className="nav-button"
-          >
+          </ScrollLink>
+
+          <RouterLink to="/services" className="nav-button"> {/* На новую страницу */}
             услуги
-          </Link>
-          <Link
-            to="third-page"
+          </RouterLink>
+
+          <ScrollLink
+            to="third-page" // ID блока на главной странице
             smooth={true}
             duration={500}
             className="nav-button"
           >
             о настоятеле
-          </Link>
-          <Link
-            to="seven-page"
+          </ScrollLink>
+
+          <ScrollLink
+            to="seven-page" // ID блока на главной странице
             smooth={true}
             duration={500}
             className="nav-button"
           >
             контакты
-          </Link>
+          </ScrollLink>
         </nav>
+
+        {/* Кнопка "Связаться с нами" */}
         <div className="contact-button-container">
-          <button className="contact-button">cвязаться с нами</button>
+          <ScrollLink
+            to="contact-form" // ID формы на главной странице
+            smooth={true}
+            duration={500}
+            className="contact-button"
+          >
+            связаться с нами
+          </ScrollLink>
         </div>
 
         {/* Кнопка бургер-меню */}
@@ -82,7 +92,8 @@ const FirstPage = () => {
         open={drawerVisible} // Используем open вместо visible начиная с Ant Design 4.20.0
       >
         <div className="drawer-menu">
-          <Link
+          {/* Навигация в Drawer */}
+          <ScrollLink
             to="second-page"
             smooth={true}
             duration={500}
@@ -90,17 +101,17 @@ const FirstPage = () => {
             onClick={closeDrawer}
           >
             о монастыре
-          </Link>
-          <Link
-            to="fifth-page"
-            smooth={true}
-            duration={500}
+          </ScrollLink>
+
+          <RouterLink
+            to="/services"
             className="nav-button"
             onClick={closeDrawer}
           >
             услуги
-          </Link>
-          <Link
+          </RouterLink>
+
+          <ScrollLink
             to="third-page"
             smooth={true}
             duration={500}
@@ -108,8 +119,9 @@ const FirstPage = () => {
             onClick={closeDrawer}
           >
             о настоятеле
-          </Link>
-          <Link
+          </ScrollLink>
+
+          <ScrollLink
             to="seven-page"
             smooth={true}
             duration={500}
@@ -117,8 +129,9 @@ const FirstPage = () => {
             onClick={closeDrawer}
           >
             контакты
-          </Link>
-          <Link
+          </ScrollLink>
+
+          <ScrollLink
             to="contact-form"
             smooth={true}
             duration={500}
@@ -126,7 +139,7 @@ const FirstPage = () => {
             onClick={closeDrawer}
           >
             связаться с нами
-          </Link>
+          </ScrollLink>
         </div>
       </Drawer>
 

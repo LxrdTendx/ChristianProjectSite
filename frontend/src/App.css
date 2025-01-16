@@ -49,6 +49,7 @@
   background-position: center;
 }
 
+
 /* Стили для хедера */
 .header {
   display: flex;
@@ -79,6 +80,7 @@
 }
 
 .nav-button {
+  text-decoration: none;
   transition: 0.5s;
   border: none;
   background: none;
@@ -109,8 +111,8 @@
     cursor: pointer;
     border: 0.50px solid rgba(255, 255, 255, 0.7);
     border-radius: 5px;
-    padding: 9px 93px;
-    height: 60px;
+    padding: 20px 93px;
+    height: 18px;
     font-family: "Manrope", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -859,3 +861,38 @@ color: #fff;
   flex-wrap: wrap;
 }
 
+.servicepage{
+  text-align: center;
+  align-items: center; /* Центрируем контент по горизонтали */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  height: 100% !important;
+  background-color: black;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Вертикальный стек */
+  min-height: 100vh;
+  
+  width: 100%;
+  margin: 0 auto;
+  flex: 1 1;
+}
+
+
+@media (max-width: 1550px) {
+  .servicepage {
+    /* transform: scale(0.8); */
+    zoom: 90%;
+    width: 100%;
+    
+  }
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}

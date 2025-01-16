@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import logo from './assets/logo.png'; // Импорт логотипа
 import { DownloadOutlined } from '@ant-design/icons';
@@ -10,35 +11,49 @@ import ForthPage from './components/ForthPage.js';
 import FifthPage from './components/FifthPage.js';
 import SixPage from './components/SixPage.js';
 import SevenPage from './components/SevenPage.js';
+import ServicesPage from './components/ServicesPage'; // Импорт новой страницы
 
 
 function App() {
   return (
-    <div className="App">
-      <div className="fixed-width-container">
-        <FirstPage />
+    <Router>
+      <Routes>
+        {/* Главная страница */}
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <div className="fixed-width-container">
+                <FirstPage />
 
-        <div id="second-page">
-          <SecondPage />
-        </div>
+                <div id="second-page">
+                  <SecondPage />
+                </div>
 
-        <div id="third-page">
-          <ThirdPage />
-        </div>
-      
-        <ForthPage />
+                <div id="third-page">
+                  <ThirdPage />
+                </div>
+              
+                <ForthPage />
 
-        <div id='fifth-page'>
-          <FifthPage />
-        </div>
-        
-        <SixPage />
-        <div id='seven-page'>
-          <SevenPage />
-        </div>
-        
-      </div>
-    </div>
+                <div id='fifth-page'>
+                  <FifthPage />
+                </div>
+                
+                <SixPage />
+                <div id='seven-page'>
+                  <SevenPage />
+                </div>
+                
+              </div>
+            </div>
+          }
+        />
+
+      {/* Страница "Услуги" */}
+      <Route path="/services" element={<ServicesPage />} />
+        </Routes>
+    </Router>
   );
 }
 console.log(process.env.REACT_APP_BACKEND_URL);
