@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import logo from '../assets/logo.png';
-import { Card, Pagination, Button, Drawer, Badge, List, Modal, notification, Input } from 'antd';
+import { Button, Drawer, Badge, List, Modal, notification, Input } from 'antd';
 import { ShoppingCartOutlined, CloseCircleOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 
-const { Meta } = Card;
-
 const ServicesPage = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(8); // 4 колонки x 2 строки
   const [cart, setCart] = useState([]); // Корзина
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [productModal, setProductModal] = useState(null); // Товар для комментария
-  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
-  const [comment, setComment] = useState(''); // Комментарий к товару
-  const [searchValue, setSearchValue] = useState('');
 
+  // Состояния для модального окна комментария (при добавлении товара в корзину)
+  const [productModal, setProductModal] = useState(null);
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
+  const [comment, setComment] = useState('');
+
+  // Состояния для модального окна с описанием товара (Подробнее)
+  const [selectedProductForDetails, setSelectedProductForDetails] = useState(null);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+
+  const [searchValue, setSearchValue] = useState('');
   const backendURL = `${config.backendURL}/uploads/`;
+
+  // Уведомления в левом нижнем углу
+  useEffect(() => {
+    notification.config({
+      placement: 'bottomLeft',
+    });
+  }, []);
 
   // Получение списка товаров
   useEffect(() => {
@@ -29,7 +38,7 @@ const ServicesPage = () => {
       try {
         const response = await axios.get(`${config.backendURL}/products/`);
         setProducts(response.data);
-        setFilteredProducts(response.data); // Сохраняем для фильтрации
+        setFilteredProducts(response.data);
       } catch (error) {
         console.error('Ошибка при загрузке товаров:', error);
       }
@@ -52,19 +61,16 @@ const ServicesPage = () => {
 
   // Добавление товара в корзину
   const addToCart = (product, comment = '') => {
+    // Проверяем, есть ли уже такой товар в корзине
     const updatedCart = cart.map((item) =>
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
-
     const isNewProduct = !cart.some((item) => item.id === product.id);
-
     if (isNewProduct) {
       updatedCart.push({ ...product, quantity: 1, comment });
     }
-
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
-
     notification.success({
       message: 'Товар добавлен в корзину',
       description: `${product.name} добавлен в корзину.`,
@@ -78,10 +84,8 @@ const ServicesPage = () => {
         item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
       )
       .filter((item) => item.quantity > 0);
-
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
-
     notification.info({ message: 'Количество товара уменьшено' });
   };
 
@@ -90,11 +94,10 @@ const ServicesPage = () => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
     saveCartToLocalStorage(updatedCart);
-
     notification.info({ message: 'Товар удален из корзины' });
   };
 
-  // Открыть модальное окно для комментария
+  // Открыть модальное окно для добавления товара с комментарием
   const handleAddToCartWithComment = (product) => {
     setProductModal(product);
     setIsCommentModalOpen(true);
@@ -109,7 +112,13 @@ const ServicesPage = () => {
     setIsCommentModalOpen(false);
   };
 
-  // Фильтрация товаров
+  // Открыть модальное окно с описанием товара
+  const handleShowDetails = (product) => {
+    setSelectedProductForDetails(product);
+    setIsDetailsModalOpen(true);
+  };
+
+  // Фильтрация товаров по поисковому запросу
   const handleSearch = (value) => {
     setSearchValue(value);
     const filtered = products.filter((product) =>
@@ -117,9 +126,6 @@ const ServicesPage = () => {
     );
     setFilteredProducts(filtered);
   };
-
-  // Список товаров на текущей странице
-  const paginatedProducts = filteredProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <div className="servicepage">
@@ -130,11 +136,11 @@ const ServicesPage = () => {
             <img src={logo} alt="Logo" className="logo" />
           </Link>
         </div>
-        <nav className="nav">
+        {/* <nav className="nav">
           <Link to="/" className="nav-button">
             Главная
           </Link>
-        </nav>
+        </nav> */}
         <Badge count={cart.reduce((acc, item) => acc + item.quantity, 0)} size="small">
           <Button
             type="text"
@@ -147,43 +153,41 @@ const ServicesPage = () => {
       <hr />
 
       <div className="services-content">
-        <h1>Наши услуги</h1>
-        <p>Ниже представлен список наших услуг.</p>
 
         {/* Поиск */}
         <Input.Search
+          className="sv-search"
           placeholder="Поиск товаров..."
           value={searchValue}
           onChange={(e) => handleSearch(e.target.value)}
           style={{ marginBottom: '16px', maxWidth: '400px' }}
         />
 
-        {/* Список товаров */}
-        <div className="product-grid">
-          {paginatedProducts.map((product) => {
-            const inCart = cart.find((item) => item.id === product.id);
 
+        {/* Список товаров с кастомной карточкой (уникальные классы с префиксом "sv-") */}
+        <div className="product-grid">
+          {filteredProducts.map((product) => {
+            const inCart = cart.find((item) => item.id === product.id);
             return (
-              <Card
-                key={product.id}
-                hoverable
-                style={{ width: 240, margin: '16px' }}
-                cover={
-                  <div
-                    style={{
-                      backgroundImage: `url(${backendURL}${product.image_url})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      height: '150px',
-                    }}
-                  />
-                }
-                actions={[
-                  <Button type="link" onClick={() => handleAddToCartWithComment(product)}>
+              <div className="sv-card-item" key={product.id}>
+                <div
+                  className="sv-card-item-photo"
+                  style={{
+                    backgroundImage: `url(${backendURL}${product.image_url})`,
+                  }}
+                />
+                <div className="sv-card-name">{product.name}</div>
+                <div className="sv-card-price">{product.price || 'Цена не указана'} ₽</div>
+                <div className="sv-card-actions">
+                  <Button
+                    type="link"
+                    className="sv-card-more"
+                    onClick={() => handleShowDetails(product)}
+                  >
                     Подробнее
-                  </Button>,
-                  inCart ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  </Button>
+                  {inCart ? (
+                    <div className="sv-card-cart-controls">
                       <Button
                         icon={<MinusOutlined />}
                         onClick={() => decreaseCartQuantity(product.id)}
@@ -198,23 +202,13 @@ const ServicesPage = () => {
                     <Button type="primary" onClick={() => handleAddToCartWithComment(product)}>
                       Добавить
                     </Button>
-                  ),
-                ]}
-              >
-                <Meta title={product.name} description={`${product.price || 'Цена не указана'} ₽`} />
-              </Card>
+                  )}
+                </div>
+
+              </div>
             );
           })}
         </div>
-
-        {/* Пагинация */}
-        <Pagination
-          current={currentPage}
-          pageSize={pageSize}
-          total={filteredProducts.length}
-          onChange={(page) => setCurrentPage(page)}
-          style={{ textAlign: 'center', marginTop: '16px' }}
-        />
       </div>
 
       {/* Корзина */}
@@ -228,8 +222,11 @@ const ServicesPage = () => {
             type="primary"
             onClick={() => {
               setCart([]);
-              saveCartToLocalStorage([]);
-              notification.success({ message: 'Покупка завершена!', description: 'Спасибо за ваш заказ.' });
+              localStorage.removeItem('cart');
+              notification.success({
+                message: 'Покупка завершена!',
+                description: 'Спасибо за ваш заказ.',
+              });
             }}
           >
             Оформить заказ
@@ -240,27 +237,41 @@ const ServicesPage = () => {
           <List
             dataSource={cart}
             renderItem={(item) => (
-              <List.Item
-                actions={[
-                  <Button
-                    icon={<MinusOutlined />}
-                    onClick={() => decreaseCartQuantity(item.id)}
-                  />,
-                  <Button
-                    icon={<PlusOutlined />}
-                    onClick={() => addToCart(item)}
-                  />,
-                  <Button
-                    icon={<CloseCircleOutlined />}
-                    onClick={() => removeFromCart(item.id)}
-                  />,
-                ]}
-              >
-                <List.Item.Meta
-                  title={item.name}
-                  description={`${item.price} ₽ (x${item.quantity})`}
-                />
-                {item.comment && <p>Комментарий: {item.comment}</p>}
+              <List.Item>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <div>
+                    <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{item.name}</div>
+                    <div style={{ marginBottom: '4px' }}>
+                      {item.price} ₽ (x{item.quantity})
+                    </div>
+                    {item.comment && (
+                      <div style={{ marginBottom: '4px' }}>
+                        <strong>Комментарий:</strong> {item.comment}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <Button
+                      icon={<MinusOutlined />}
+                      onClick={() => decreaseCartQuantity(item.id)}
+                    />
+                    <Button
+                      icon={<PlusOutlined />}
+                      onClick={() => addToCart(item)}
+                    />
+                    <Button
+                      icon={<CloseCircleOutlined />}
+                      onClick={() => removeFromCart(item.id)}
+                    />
+                  </div>
+                </div>
               </List.Item>
             )}
           />
@@ -269,7 +280,40 @@ const ServicesPage = () => {
         )}
       </Drawer>
 
-      {/* Модальное окно для комментария */}
+      {/* Модальное окно с описанием товара (уникальные классы с префиксом "sv-") */}
+      <Modal
+        title={selectedProductForDetails ? selectedProductForDetails.name : ''}
+        open={isDetailsModalOpen}
+        onCancel={() => setIsDetailsModalOpen(false)}
+        footer={[
+          <Button key="close" onClick={() => setIsDetailsModalOpen(false)}>
+            Закрыть
+          </Button>,
+        ]}
+        className="sv-modal"
+        width={900}  // Увеличенная ширина
+      >
+        {selectedProductForDetails && (
+          <>
+            <div
+              className="sv-modal-image"
+              style={{
+                backgroundImage: `url(${backendURL}${selectedProductForDetails.image_url})`,
+              }}
+            />
+            <p className="sv-modal-price">
+              Цена: {selectedProductForDetails.price || 'Цена не указана'} ₽
+            </p>
+            {selectedProductForDetails.description && (
+              <p className="sv-modal-description">
+                {selectedProductForDetails.description}
+              </p>
+            )}
+          </>
+        )}
+      </Modal>
+
+      {/* Модальное окно для ввода комментария */}
       <Modal
         title="Добавить комментарий"
         open={isCommentModalOpen}

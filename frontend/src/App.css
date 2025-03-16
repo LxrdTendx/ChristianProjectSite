@@ -16,6 +16,9 @@
   }
 }
 
+html{
+  background-color: black;
+}
 
 
 .fixed-width-container {
@@ -577,9 +580,11 @@ color: #fff;
 }
 
 .card-item {
-  flex: 0 0 auto; /* Предотвращает изменение ширины */
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto; /* Фиксированная ширина */
   width: 371px; /* Фиксированная ширина карточки */
-  height: 491px;
+  height: 550px;
   border: 0.50px solid rgba(255, 255, 255, 0.54);
   border-radius: 5px;
 }
@@ -617,11 +622,206 @@ color: #fff;
   text-decoration: none;
   max-width: 331px !important;
   height: 27px;
-  margin-top: 22px;
+  margin-top: auto;       /* Автоматический отступ сверху, чтобы кнопка оттолкнулась вниз */
+  margin-bottom: 22px; 
   align-items:start !important;
   justify-content: unset;
   padding: 0 !important;
 }
+
+/* Кастомные стили для модального окна */
+.custom-modal .ant-modal-content {
+  background-color: #1a1a1a;      /* Тёмный фон */
+  border: 2px solid #a8916b;      /* Обводка цвета #a8916b */
+}
+
+.custom-modal .ant-modal-header {
+  background-color: #1a1a1a;
+  border-bottom: 2px solid #a8916b;
+}
+
+.custom-modal .ant-modal-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-modal .ant-modal-body {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Если требуется стилизовать текст внутри модального окна */
+.custom-modal p {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* Стили для карточек услуг в ServicesPage */
+.sv-card-item {
+  display: flex;
+  flex-direction: column;
+  width: 371px;
+  height: 550px;
+  border: 0.5px solid rgba(255, 255, 255, 0.54);
+  border-radius: 5px;
+  margin: 16px;
+  overflow: hidden;
+}
+
+.sv-card-item-photo {
+  width: 331px;
+  height: 316px;
+  margin: 15px auto 0;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+}
+
+.sv-card-name {
+  font-family: "Manrope", sans-serif;
+  max-width: 331px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 112%;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 30px auto 0;
+  text-align: left;
+}
+
+.sv-card-price {
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-top: 8px;
+}
+
+.sv-card-actions {
+  margin-top: auto;
+  padding: 0 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sv-card-cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Базовые стили для кнопок + и - */
+.sv-card-cart-controls .ant-btn {
+  border-color: #a8916b;                 /* Цвет границы по умолчанию */
+  background-color: transparent;         /* Прозрачный фон */
+  color: rgba(255, 255, 255, 0.7);       /* Цвет текста (иконок) по умолчанию */
+}
+
+/* Иконки внутри кнопок по умолчанию */
+.sv-card-cart-controls .ant-btn .anticon {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Стили при наведении и фокусе */
+.sv-card-cart-controls .ant-btn:hover,
+.sv-card-cart-controls .ant-btn:focus {
+  border-color: #a8916b;                 /* Можно оставить тот же цвет или поменять */
+  background-color: #1a1a1a;             /* Тёмный фон при наведении */
+  color: #a8916b;                        /* Цвет текста (иконок) при наведении */
+}
+
+/* Иконки при наведении и фокусе */
+.sv-card-cart-controls .ant-btn:hover .anticon,
+.sv-card-cart-controls .ant-btn:focus .anticon {
+  color: #a8916b;                        /* Цвет иконки при наведении */
+}
+
+
+.sv-card-cart-controls .ant-btn {
+  border-color: #a8916b;           /* Цвет границы кнопки */
+  background-color: transparent;   /* Прозрачный фон */
+  color: rgba(255, 255, 255, 0.7); /* Цвет текста (иконки) */
+}
+
+/* Стили для модального окна с описанием товара */
+.sv-modal .ant-modal-content {
+  background-color: #1a1a1a;
+  border: 2px solid #a8916b;
+}
+
+.sv-modal .ant-modal-header {
+  background-color: #1a1a1a;
+  border-bottom: 2px solid #a8916b;
+}
+
+.sv-modal .ant-modal-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sv-modal .ant-modal-body {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sv-modal-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 400px;
+  margin-bottom: 16px;
+}
+
+.sv-modal-price,
+.sv-modal-description {
+  font-family: "Manrope", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sv-card-cart-controls span {
+  color: rgba(255, 255, 255, 0.7);
+
+}
+
+.sv-card-more {
+  color: #a8916b !important; /* Переопределяем цвет ссылки */
+}
+
+/* Обертка для поля ввода (Input.Search) */
+.sv-search .ant-input-affix-wrapper {
+  background-color: #1a1a1a;         /* Темный фон */
+  border: 1px solid #a8916b;         /* Граница цвета #a8916b */
+  border-radius: 4px;
+}
+
+/* Само поле ввода */
+.sv-search .ant-input {
+  background-color: transparent;     /* Прозрачный фон */
+  color: rgba(255, 255, 255, 0.7);   /* Текстовое содержимое */
+}
+
+/* Плейсхолдер */
+.sv-search .ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);   /* Более светлый цвет для подсказки */
+}
+
+/* Кнопка поиска (лупа) и кнопка очистки (x) */
+.sv-search .ant-input-search-button,
+.sv-search .ant-input-clear-icon {
+  background-color: transparent;
+  border-color: #a8916b;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Состояния наведения и фокуса для кнопок */
+.sv-search .ant-input-search-button:hover,
+.sv-search .ant-input-search-button:focus,
+.sv-search .ant-input-clear-icon:hover,
+.sv-search .ant-input-clear-icon:focus {
+  background-color: #1a1a1a;
+  color: #a8916b;
+  border-color: #a8916b;
+}
+
+
 
 
 .footer{

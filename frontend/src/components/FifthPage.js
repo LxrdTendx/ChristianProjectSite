@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../App.css';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Row, Modal } from 'antd';
+import { Link } from 'react-router-dom'; // Импортируем Link
 import axios from 'axios';
 import config from './config';
 
@@ -106,28 +107,35 @@ const FifthPage = () => {
                             }}
                         />
                         <div className="card-name">{product.name}</div>
-                        <Button type="link" className="card-button">
-                            записаться к нам 🡢
-                        </Button>
+                        <Link 
+                          to="/services" 
+                          onClick={(e) => e.stopPropagation()} 
+                          className="card-button"
+                        >
+                          записаться к нам 🡢
+                        </Link>
                     </div>
                 ))}
             </div>
 
-            {/* Модальное окно */}
+            {/* Модальное окно с кастомными стилями */}
             <Modal
                 title={selectedProduct?.name} // Название продукта в заголовке модального окна
                 visible={isModalOpen}
                 onCancel={closeModal} // Закрытие окна
                 footer={null} // Убираем стандартные кнопки "ОК" и "Отмена"
+                width={900}  // Увеличиваем ширину модального окна
+                className="custom-modal"
             >
                 {selectedProduct && (
                     <div>
                         <div
                             style={{
                                 backgroundImage: `url(${backendURL}${selectedProduct.image_url})`,
-                                backgroundSize: 'cover',
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
                                 backgroundPosition: 'center',
-                                height: '200px',
+                                height: '400px',
                                 marginBottom: '16px',
                             }}
                         />
