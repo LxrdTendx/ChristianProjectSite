@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 
-/* 1. Импорт LazyLoadImage */
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css'; // Стили для эффекта blur
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ServicesPage = () => {
   const [products, setProducts] = useState([]);
@@ -50,7 +49,7 @@ const ServicesPage = () => {
     fetchProducts();
   }, []);
 
-  // Восстановление корзины из localStorage
+  // Восстановление корзины из localStorage при загрузке компонента
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -65,6 +64,7 @@ const ServicesPage = () => {
 
   // Добавление товара в корзину
   const addToCart = (product, comment = '') => {
+    // Проверяем, есть ли уже такой товар в корзине
     const updatedCart = cart.map((item) =>
       item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
     );
@@ -156,6 +156,7 @@ const ServicesPage = () => {
       <hr />
 
       <div className="services-content">
+
         {/* Поиск */}
         <Input.Search
           className="sv-search"
@@ -165,23 +166,19 @@ const ServicesPage = () => {
           style={{ marginBottom: '16px', maxWidth: '400px' }}
         />
 
-        {/* Список товаров с кастомной карточкой */}
+
+        {/* Список товаров с кастомной карточкой (уникальные классы с префиксом "sv-") */}
         <div className="product-grid">
           {filteredProducts.map((product) => {
             const inCart = cart.find((item) => item.id === product.id);
-
             return (
               <div className="sv-card-item" key={product.id}>
-                {/* 2. Используем LazyLoadImage вместо background-image */}
-                <LazyLoadImage
+                <div
                   className="sv-card-item-photo"
-                  src={`${backendURL}${product.image_url}`}
-                  effect="blur"               // эффект размытия при загрузке
-                  placeholderSrc="/placeholder.png" 
-                  // ↑ placeholderSrc - путь к вашей заглушке (по желанию)
-                  // или можно не указывать, тогда будет просто размытие
+                  style={{
+                    backgroundImage: `url(${backendURL}${product.image_url})`,
+                  }}
                 />
-
                 <div className="sv-card-name">{product.name}</div>
                 <div className="sv-card-price">{product.price || 'Цена не указана'} ₽</div>
                 <div className="sv-card-actions">
@@ -210,6 +207,7 @@ const ServicesPage = () => {
                     </Button>
                   )}
                 </div>
+
               </div>
             );
           })}
@@ -285,7 +283,7 @@ const ServicesPage = () => {
         )}
       </Drawer>
 
-      {/* Модальное окно с описанием товара */}
+      {/* Модальное окно с описанием товара (уникальные классы с префиксом "sv-") */}
       <Modal
         title={selectedProductForDetails ? selectedProductForDetails.name : ''}
         open={isDetailsModalOpen}
@@ -296,7 +294,7 @@ const ServicesPage = () => {
           </Button>,
         ]}
         className="sv-modal"
-        width={900}
+        width={900}  // Увеличенная ширина
       >
         {selectedProductForDetails && (
           <>
