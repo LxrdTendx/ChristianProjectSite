@@ -51,9 +51,9 @@ const FifthPage = () => {
     return (
         <div className="fifthpage">
             <div className="info-navigation">
-                <div className="services-link">[ услуги ]</div>
+                <div className="services-link">[ Таинства и Богослужения ]</div>
                 <div className="fifth-title">
-                    Таинства и <span style={{ color: '#bda57e' }}>Богослужения</span>
+                    Таинства и <span style={{ color: '#EDCB92' }}>Богослужения</span>
                 </div>
                 <Row justify="center" style={{ marginBottom: 16, marginLeft: 'auto', marginRight: '0' }}>
                     <Button
@@ -61,9 +61,9 @@ const FifthPage = () => {
                         icon={<LeftOutlined />}
                         onClick={handlePrev}
                         style={{
-                            border: '0.92px solid rgba(168, 145, 107, 0.82)',
-                            background: 'black',
-                            color: 'rgba(168, 145, 107, 0.82)',
+                            border: '0.92px solid #EDCB92',
+                            background: 'white',
+                            color: '#EDCB92',
                             width: '50px',
                             height: '50px',
                         }}
@@ -74,9 +74,9 @@ const FifthPage = () => {
                         onClick={handleNext}
                         style={{
                             marginLeft: 8,
-                            border: '0.92px solid rgba(168, 145, 107, 0.82)',
-                            background: 'black',
-                            color: 'rgba(168, 145, 107, 0.82)',
+                            border: '0.92px solid #EDCB92',
+                            background: 'white',
+                            color: '#EDCB92',
                             width: '50px',
                             height: '50px',
                         }}

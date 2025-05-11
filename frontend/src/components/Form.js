@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, InputNumber } from 'antd';
 import '../App.css';
 
 const FormSix = () => {
@@ -30,9 +30,10 @@ const FormSix = () => {
       >
         <Input
           placeholder="Имя"
+          className="custom-input"
           style={{
-            backgroundColor:'black',
-            border: '1px solid rgba(255, 255, 255, 0.6)',
+            backgroundColor:'white',
+            border: '1px solid #5C5C5C',
             borderRadius: '5px',
             width: '100%',
             height: '72px',
@@ -40,7 +41,7 @@ const FormSix = () => {
             fontWeight: 400,
             fontSize: '20px',
             lineHeight: '150%',
-            color: 'rgba(255, 255, 255, 0.5)',
+            color: 'black',
           }}
         />
       </Form.Item>
@@ -60,9 +61,17 @@ const FormSix = () => {
       >
         <Input
           placeholder="Номер телефона"
+          type="tel"
+          inputMode="numeric"
+          pattern="[0-9]*"
+          onChange={(e) => {
+            // Удаляем все НЕ-цифры
+            const onlyNums = e.target.value.replace(/\D/g, '');
+            form.setFieldsValue({ phone: onlyNums });
+          }}
           style={{
-            backgroundColor:'black',
-            border: '1px solid rgba(255, 255, 255, 0.6)',
+            backgroundColor:'white',
+            border: '1px solid #5C5C5C',
             borderRadius: '5px',
             width: '100%',
             height: '72px',
@@ -70,8 +79,9 @@ const FormSix = () => {
             fontWeight: 400,
             fontSize: '20px',
             lineHeight: '150%',
-            color: 'rgba(255, 255, 255, 0.5)',
+            color: 'black',
           }}
+        
         />
       </Form.Item>
 
@@ -87,8 +97,8 @@ const FormSix = () => {
           },
         ]}
       >
-        <Checkbox style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-          Я соглашаюсь с условиями <a href="#" style={{color:'#bda57e', fontSize:'16px'}}>Политики в отношении обработки персональных данных</a>
+        <Checkbox style={{ color: '#CBCBCB' }}>
+          Я соглашаюсь с условиями <a href="#" style={{color:'#EDCB92', fontSize:'16px'}}>Политики в отношении обработки персональных данных</a>
         </Checkbox>
       </Form.Item>
 
@@ -104,7 +114,7 @@ const FormSix = () => {
             fontWeight: '500',
             fontSize: '20px',
             lineHeight: '150%',
-            color: '#fff',
+            color: '#5C5C5C',
         }}>
           Отправить
         </Button>

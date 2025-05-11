@@ -39,7 +39,7 @@ const FirstPage = () => {
           </ScrollLink>
 
           <RouterLink to="/services" className="nav-button"> {/* На новую страницу */}
-            услуги
+           Таинства и Богослужения
           </RouterLink>
 
           <ScrollLink
@@ -108,7 +108,7 @@ const FirstPage = () => {
             className="nav-button"
             onClick={closeDrawer}
           >
-            услуги
+            Таинства и Богослужения
           </RouterLink>
 
           <ScrollLink
@@ -163,7 +163,7 @@ const FirstPage = () => {
           icon={<VerticalAlignTopOutlined />}
           size="large"
           style={{
-            backgroundColor: '#bda57e',
+            backgroundColor: '#EDCB92',
             border: 'none',
             color: 'white',
           }}

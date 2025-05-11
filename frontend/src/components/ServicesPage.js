@@ -147,7 +147,7 @@ const ServicesPage = () => {
         <Badge count={cart.reduce((acc, item) => acc + item.quantity, 0)} size="small">
           <Button
             type="text"
-            icon={<ShoppingCartOutlined style={{ fontSize: '24px', color: '#bda57e' }} />}
+            icon={<ShoppingCartOutlined style={{ fontSize: '24px', color: '#EDCB92' }} />}
             onClick={() => setDrawerVisible(true)}
           />
         </Badge>

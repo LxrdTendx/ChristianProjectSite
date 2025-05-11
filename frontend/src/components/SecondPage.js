@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 import { Button } from 'antd';
+import { Color } from 'antd/es/color-picker';
 
 const SecondPage = () => {
   // Состояние для управления видимостью блока
@@ -19,7 +20,7 @@ const SecondPage = () => {
           <div className="f-b-p"></div>
         </div>
         <div className="s-b">
-          <p>
+          <p style={{color: '#5C5C5C'}}>
             <span className="text-color">История</span> Никольского Угрешского
             мужского <span className="text-color">монастыря</span>
           </p>

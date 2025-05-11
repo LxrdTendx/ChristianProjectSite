@@ -32,7 +32,7 @@ html{
 
 .App{
   height: 100% !important;
-  background-color: black;
+  background-color: white;
   overflow: hidden;
   display: flex;
   flex-direction: column; /* Вертикальный стек */
@@ -70,9 +70,9 @@ html{
   align-items: center;
 }
 
-.logo {
+/* .logo {
   max-height: 55px;
-}
+} */
 
 /* Стили для навигации */
 .nav {
@@ -169,21 +169,21 @@ hr{
 .title-button{
   margin-top: 66px;
   transition: 1s ease;
-  background: linear-gradient(77deg, #bda57e 0%, #a8916b 65.5%, #bda57e 95%);
+  background: #EDCB92;
   width: 325px;
   height: 84px; 
   font-family: "Manrope", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.86);
+  color: #5C5C5C;
 
 
 
 }
 .title-button:hover {
   background-color: unset !important; /* Белый фон при наведении */
-  color: #BDA57E !important; /* Черный текст при наведении */
-  border-color: #BDA57E !important; /* Граница тоже становится белой */
+  color: #EDCB92 !important; /* Черный текст при наведении */
+  border-color: #EDCB92 !important; /* Граница тоже становится белой */
 }
 
 .secondpage{
@@ -191,7 +191,7 @@ hr{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: black;
+  background: white;
   width: 100%;
 }
 .second-main-block{
@@ -206,7 +206,7 @@ hr{
   font-size: 18px;
   line-height: 149%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #A8A8A8;
 }
 .s-b{
   width: 50%;
@@ -222,7 +222,7 @@ hr{
 
 }
 .text-color{
-  color:#bda57e;
+  color:#EDCB92;
 }
 
 .f-b-p{
@@ -243,7 +243,7 @@ hr{
   font-size: 18px;
   line-height: 149%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #A8A8A8;
   text-transform: none;
 }
 
@@ -284,7 +284,7 @@ hr{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background: linear-gradient(197deg, rgba(0, 0, 0, 0) 0%, #000 100%), url("./assets/third-pg.png");
+  background: linear-gradient(197deg, rgba(0, 0, 0, 0) 10%, #FFF 120%), url("./assets/third-pg.png");
 }
 
 .text-link-third{
@@ -329,12 +329,12 @@ hr{
   font-size: 22px;
   line-height: 136%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #A8A8A8;
 }
 
 
 .third-text-color{
-  color:#bda57e;
+  color:#EDCB92;
 }
 
 .middle-text-box{
@@ -345,7 +345,7 @@ hr{
   line-height: 154%;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #fff;
+  color: #5C5C5C;
   margin: 20px 0 20px 35px !important;
 }
 
@@ -356,7 +356,7 @@ hr{
   /* height: 150px; */
   border-width: 1px;
   border-style: solid;
-  border-image: linear-gradient(to right, #bda57e, rgba(189, 165, 126, 0)) 1;
+  border-image: linear-gradient(to right, #EDCB92, rgba(189, 165, 126, 0)) 1;
 }
 
 .forthpage{
@@ -383,7 +383,7 @@ hr{
 .forth-text-block{
   padding-top: 100px;
   width: 800px;
-  margin-left: 122px;
+  margin-left: 10%;
   align-items: center;
 }
 .author{
@@ -416,7 +416,7 @@ hr{
   font-size: 18px;
   line-height: 149%;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.7);
+  color: #A8A8A8;
   margin-top: 10px;
 }
 
@@ -438,7 +438,7 @@ hr{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: black;
+  background: white;
   width: 100%;
   height: 470px;
 
@@ -461,7 +461,7 @@ hr{
   font-size: 50px;
   line-height: 110%;
   text-transform: uppercase;
-  color: #fff;
+  color: #5C5C5C;
 }
 .left-b-text{
   margin-top: 44px;
@@ -479,9 +479,9 @@ hr{
 
 /* В файле CSS */
 .ant-checkbox-checked .ant-checkbox-inner {
-  background-color: #bda57e !important;
-  border-color: #bda57e !important;
-  border-color: #bda57e !important;
+  background-color: #EDCB92 !important;
+  border-color: #EDCB92 !important;
+  border-color: #EDCB92 !important;
 }
 
 .ant-checkbox-checked .ant-checkbox-inner:after {
@@ -489,13 +489,13 @@ hr{
 }
 
 .ant-input::placeholder {
-  color: rgba(255, 255, 255, 0.5) !important; /* Пример цвета */
+  color: #5C5C5C !important; /* Пример цвета */
   opacity: 1; /* Устанавливаем opacity, чтобы не было полупрозрачности */
 }
 
 .sevenpage{
   align-items: center;
-  background: black;
+  background: white;
   width: 100%;
   height: calc(681px + 153px);
 }
@@ -527,7 +527,7 @@ hr{
   position: absolute;
   top: 150px;   /* Центрируем по вертикали */
   left: 100px;  /* Центрируем по горизонтали */
-  background: #070506;
+  background: white;
   width: 435px;
   height: 367px;
   z-index: 1; /* Устанавливаем z-index выше overlay, чтобы этот div был виден */
@@ -536,18 +536,18 @@ hr{
   position: relative;
   margin-left: 20px;
   margin-top: 16px;
-  border: 1.50px solid #a8916b;
+  border: 1.50px solid #EDCB92;
   width: 395px;
   height: 333px;
 }
 .info-text{
   margin: 25px;
   font-family: "Forum", sans-serif;
-font-weight: 400;
-font-size: 38px;
-line-height: 145%;
-text-transform: uppercase;
-color: #fff;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 145%;
+  text-transform: uppercase;
+  color: #5C5C5C;
 }
 
 .contact-items {
@@ -564,7 +564,7 @@ color: #fff;
   font-weight: 400;
   font-size: 19px;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: #5C5C5C;
 }
 .carousel-card {
   gap: 54px;
@@ -843,14 +843,14 @@ color: #fff;
   font-weight: 400;
   font-size: 18px;
   line-height: 117%;
-  color: #fff;
+  color: #5C5C5C;
 }
 .copyright{
   font-family: "Manrope", sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 128%;
-  color: #fff;
+  color: #5C5C5C;
   margin-left: auto; /* Отталкивает блок с copyright к правому краю */
   
 }

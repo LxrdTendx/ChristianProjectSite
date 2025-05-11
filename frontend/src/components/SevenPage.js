@@ -1,7 +1,7 @@
 
 import '../App.css';
 import { Button, Divider, Flex, Radio } from 'antd';
-import logo from '../assets/logo.png'; // Импорт логотипа
+import logo from '../assets/logo_foot.png'; // Импорт логотипа
 
 const SevenPage = () => {
     return (
