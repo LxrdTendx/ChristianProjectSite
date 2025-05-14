@@ -1026,7 +1026,7 @@ hr{
 }
 
 /* Скрываем обычную навигацию на мобильных устройствах */
-@media (max-width: 700px) {
+@media (max-width: 1200px) {
   .nav, .contact-button-container {
     display: none; /* Скрыть обычное меню и кнопку "Связаться с нами" */
   }
@@ -1046,7 +1046,7 @@ hr{
 }
 
 /* Для десктопа скрываем кнопку бургер-меню */
-@media (min-width: 701px) {
+@media (min-width: 1201px) {
   .menu-button {
     display: none;
   }
@@ -1057,7 +1057,8 @@ hr{
 }
 
 .drawer-menu{
-  display: flex;
+  display: grid;
+  gap: 20px;
   flex-wrap: wrap;
 }
 

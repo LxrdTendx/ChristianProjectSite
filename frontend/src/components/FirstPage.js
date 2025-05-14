@@ -48,7 +48,7 @@ const FirstPage = () => {
             duration={500}
             className="nav-button"
           >
-            о настоятеле
+            о священнике
           </ScrollLink>
 
           <ScrollLink
@@ -118,7 +118,7 @@ const FirstPage = () => {
             className="nav-button"
             onClick={closeDrawer}
           >
-            о настоятеле
+            о священнике
           </ScrollLink>
 
           <ScrollLink
