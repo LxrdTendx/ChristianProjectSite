@@ -1,23 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../App.css';
 import { Button } from 'antd';
 import { Color } from 'antd/es/color-picker';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const SecondPage = () => {
-  // Состояние для управления видимостью блока
   const [isExpanded, setIsExpanded] = useState(false);
+  const textLinkRef = useRef(null);
 
-  // Функция переключения состояния видимости блока
   const toggleContent = () => {
-    setIsExpanded(!isExpanded);
+    setIsExpanded((prev) => {
+      const newState = !prev;
+
+      if (!newState && textLinkRef.current) {
+        setTimeout(() => {
+          textLinkRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+
+      return newState;
+    });
   };
 
   return (
     <div className="secondpage">
       <div className="second-main-block">
         <div className="f-b">
-          <div className="text-link">[ о монастыре ]</div>
+        <div className="text-link" ref={textLinkRef}>[ о монастыре ]</div>
           <div className="f-b-p"></div>
+          <TransitionGroup component={null}>
+            {isExpanded && (
+              <CSSTransition key="p2" timeout={500} classNames="photo-fade" unmountOnExit>
+                <div className="f-b-p-2" />
+              </CSSTransition>
+            )}
+            {isExpanded && (
+              <CSSTransition key="p3" timeout={500} classNames="photo-fade" unmountOnExit>
+                <div className="f-b-p-3" />
+              </CSSTransition>
+            )}
+            {isExpanded && (
+              <CSSTransition key="p4" timeout={500} classNames="photo-fade" unmountOnExit>
+                <div className="f-b-p-4" />
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+
         </div>
         <div className="s-b">
           <p style={{color: '#5C5C5C'}}>
@@ -62,6 +90,9 @@ const SecondPage = () => {
 За века своего существования обитель была и остаётся Подмосковным центром почитания святителя Николая, Мир Ликийских чудотворца. <br/><br/>
 У писателя Дмитрия Балашова есть замечательные слова о том, что старинные памятники – это историческая якоря, связывающие человека с землёй и памятью предков»<br/><br/>
 И с этим невозможно не согласиться, надеемся, что посещение святой обители Николая Чудотворца поможет не только открыть новое о легендарной Угреше но и порадует всех прикосновением к живым традициям и культуре Древней Руси. <br/><br/>
+<i>Сайт создан во славу Божию, прихожанами Николо-Угрешского монастыря, духовными чадами и почитателями иеромонаха Стефана</i>
+                
+
 
     
             </p>
@@ -74,6 +105,17 @@ const SecondPage = () => {
         </div>
         <div className="t-b">
           <div className="t-b-p"></div>
+          <TransitionGroup component={null}>
+            {isExpanded && (
+              <CSSTransition
+                key="t-p2"
+                timeout={500}
+                classNames="t-photo-fade"
+              >
+                <div className="t-b-p-2"></div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
         </div>
       </div>
     </div>

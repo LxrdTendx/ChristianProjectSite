@@ -89,7 +89,7 @@ html{
   background: none;
   font-family: "Manrope", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 117%;
   color: #fff;
   padding: 5px 10px;
@@ -98,8 +98,8 @@ html{
 }
 
 .nav-button:hover {
-  color: white;
-
+  color: rgba(255, 255, 255, 0.86);
+  transition: 0.5s;
 }
 
 /* Стили для кнопки "Связаться с нами" */
@@ -115,11 +115,11 @@ html{
     border: 0.50px solid rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     padding: 20px 93px;
-    height: 18px;
+    height: 22px;
     font-family: "Manrope", sans-serif;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 149%;
+    font-size: 20px;
+    /* line-height: 150%; */
     letter-spacing: -0.02em;
     color: rgba(255, 255, 255, 0.86);
     white-space: nowrap;
@@ -225,15 +225,97 @@ hr{
   color:#EDCB92;
 }
 
-.f-b-p{
+
+.f-b-p, .f-b-p-2, .f-b-p-3, .f-b-p-4{
   margin-top: 130px;
   width: 270px;
   height: 333px;
-  background-image: url('./assets/photo1.png');
+  background-image: url('./assets/photo1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+.f-b-p-2{
+  background-image: url('./assets/photo3.jpg');
+}
+
+.f-b-p-3{
+  background-image: url('./assets/photo5.jpg');
+
+}
+.f-b-p-4{
+  background-image: url('./assets/photo6.jpg');
+
+}
+
+/* Анимация для фотографий слева */
+.photo-fade-enter {
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+}
+
+.photo-fade-enter-active {
+  opacity: 1;
+  height: 333px;
+  margin-top: 130px;
+  transition: all 500ms ease;
+}
+
+.photo-fade-exit {
+  opacity: 1;
+  height: 333px;
+  margin-top: 130px;
+}
+
+.photo-fade-exit-active {
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+  transition: all 500ms ease;
+}
+
+/* Анимация для фотографий справа */
+.t-photo-fade-enter {
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+}
+
+.t-photo-fade-enter-active {
+  opacity: 1;
+  height: 431px;
+  margin-top: 250px;
+  transition: all 500ms ease;
+}
+
+.t-photo-fade-exit {
+  opacity: 1;
+  height: 431px;
+  margin-top: 250px;
+}
+
+.t-photo-fade-exit-active {
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+  transition: all 500ms ease;
+}
+
+/* Анимация для текста */
+.full-block {
+  transition: all 0.5s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.full-block.visible {
+  max-height: 5000px;
+  opacity: 1;
+  margin-top: 20px;
+}
+
 .s-b p{
   margin: 0;
 }
@@ -258,14 +340,18 @@ hr{
   color: rgba(189, 165, 126, 0.75);
 }
 
-.t-b-p{
+.t-b-p, .t-b-p-2{
   margin-top: 250px;
   width: 391px;
   height: 431px;
-  background-image: url('./assets/photo2.png');
+  background-image: url('./assets/photo2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.t-b-p-2{
+  background-image: url('./assets/photo4.jpg');
+
 }
 
 .thirdpage{
@@ -284,7 +370,7 @@ hr{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background: linear-gradient(197deg, rgba(0, 0, 0, 0) 10%, #FFF 120%), url("./assets/third-pg.png");
+  background: linear-gradient(197deg, rgba(0, 0, 0, 0) 10%, #FFF 250%), url("./assets/third-pg.png");
 }
 
 .text-link-third{
@@ -860,8 +946,13 @@ hr{
 }
 
 
+@media (max-width: 1400px) {
+  .f-b-p, .f-b-p-2, .f-b-p-3, .f-b-p-4 {
+      display: none;
+  }
+}
 
-@media (max-width: 850px) {
+@media (max-width: 1200px) {
   .nav, .contact-button-container{
     display: none;
   }
@@ -904,9 +995,6 @@ hr{
     display: block;
     max-width: calc(100% - 56px);
     width: calc(100% - 56px);
-  }
-  .f-b-p{
-    display: none;
   }
   .s-b{
     font-size: 36px;
@@ -952,7 +1040,7 @@ hr{
   }
   .forth-text-block{
     margin: 0;
-    margin-left: 28px;
+    margin-left: 5%;
     max-width: calc(100% - 56px);
     width: calc(100% - 56px);
   }
@@ -965,7 +1053,7 @@ hr{
   }
   .author{
     font-size: 22px;
-    width: 48%;
+    width: 206px;
   }
   .right-block .main-text {
     font-size: 20px;
@@ -1026,7 +1114,7 @@ hr{
 }
 
 /* Скрываем обычную навигацию на мобильных устройствах */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .nav, .contact-button-container {
     display: none; /* Скрыть обычное меню и кнопку "Связаться с нами" */
   }
@@ -1046,7 +1134,7 @@ hr{
 }
 
 /* Для десктопа скрываем кнопку бургер-меню */
-@media (min-width: 1201px) {
+@media (min-width: 1301px) {
   .menu-button {
     display: none;
   }

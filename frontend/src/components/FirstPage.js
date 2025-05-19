@@ -35,7 +35,7 @@ const FirstPage = () => {
             duration={500}
             className="nav-button"
           >
-            о монастыре
+            О монастыре
           </ScrollLink>
 
           <RouterLink to="/services" className="nav-button"> {/* На новую страницу */}
@@ -48,7 +48,7 @@ const FirstPage = () => {
             duration={500}
             className="nav-button"
           >
-            о священнике
+            О священнике
           </ScrollLink>
 
           <ScrollLink
@@ -57,7 +57,7 @@ const FirstPage = () => {
             duration={500}
             className="nav-button"
           >
-            контакты
+            Контакты
           </ScrollLink>
         </nav>
 
@@ -77,7 +77,7 @@ const FirstPage = () => {
         <Button
           className="menu-button"
           type="text"
-          icon={<MenuOutlined style={{ fontSize: '24px' }} />}
+          icon={<MenuOutlined style={{ fontSize: '32px' }} />}
           onClick={showDrawer}
         />
       </header>
@@ -100,7 +100,7 @@ const FirstPage = () => {
             className="nav-button"
             onClick={closeDrawer}
           >
-            о монастыре
+            О монастыре
           </ScrollLink>
 
           <RouterLink
@@ -118,7 +118,7 @@ const FirstPage = () => {
             className="nav-button"
             onClick={closeDrawer}
           >
-            о священнике
+            О священнике
           </ScrollLink>
 
           <ScrollLink
@@ -128,7 +128,7 @@ const FirstPage = () => {
             className="nav-button"
             onClick={closeDrawer}
           >
-            контакты
+            Контакты
           </ScrollLink>
 
           <ScrollLink

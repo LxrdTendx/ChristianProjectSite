@@ -2,6 +2,8 @@
 import '../App.css';
 import { Button, Divider, Flex, Radio } from 'antd';
 import logo from '../assets/logo_foot.png'; // Импорт логотипа
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 
 const SevenPage = () => {
     return (
@@ -27,15 +29,40 @@ const SevenPage = () => {
                 <img src={logo} alt="Logo" className="logo" />
             </div>
             <nav className="nav">
-                <button className="nav-button">о монастыре</button>
-                <button className="nav-button">услуги</button>
-                <button className="nav-button">о настоятеле</button>
-                <button className="nav-button">контакты</button>
+                <ScrollLink
+                    to="second-page"
+                    smooth={true}
+                    duration={500}
+                    className="nav-button"
+                >
+                    О монастыре
+                </ScrollLink>
+
+                <RouterLink to="/services" className="nav-button">
+                    Таинства и Богослужения
+                </RouterLink>
+
+                <ScrollLink
+                    to="third-page"
+                    smooth={true}
+                    duration={500}
+                    className="nav-button"
+                >
+                    О священнике
+                </ScrollLink>
+
+                <ScrollLink
+                    to="seven-page"
+                    smooth={true}
+                    duration={500}
+                    className="nav-button"
+                >
+                    Контакты
+                </ScrollLink>
             </nav>
             <div className='copyright'>
-                Сайт создан во славу Божию, прихожанами Николо-Угрешского <br/>
-                монастыря, духовными чадами и почитателями иеромонаха Стефана
-                
+                В оформлении сайта использованы работы <br/>
+                фотографа Евгения Тихонова ©
             </div>
                 
         
