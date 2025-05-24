@@ -2,15 +2,15 @@ import React, { useEffect, useState, useRef } from 'react';
 import '../App.css';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Row, Modal } from 'antd';
-import { Link } from 'react-router-dom'; // Импортируем Link
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import config from './config';
 
 const FifthPage = () => {
     const carouselRef = useRef(null);
     const [products, setProducts] = useState([]);
-    const [selectedProduct, setSelectedProduct] = useState(null); // Для хранения выбранного продукта
-    const [isModalOpen, setIsModalOpen] = useState(false); // Для управления состоянием модального окна
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const backendURL = `${config.backendURL}/uploads/`;
 
     const handlePrev = () => {
@@ -26,13 +26,13 @@ const FifthPage = () => {
     };
 
     const openModal = (product) => {
-        setSelectedProduct(product); // Устанавливаем выбранный продукт
-        setIsModalOpen(true); // Открываем модальное окно
+        setSelectedProduct(product);
+        setIsModalOpen(true);
     };
 
     const closeModal = () => {
-        setSelectedProduct(null); // Сбрасываем выбранный продукт
-        setIsModalOpen(false); // Закрываем модальное окно
+        setSelectedProduct(null);
+        setIsModalOpen(false);
     };
 
     useEffect(() => {
@@ -83,59 +83,54 @@ const FifthPage = () => {
                     />
                 </Row>
             </div>
-            <div
-                className="carousel-card"
-                ref={carouselRef}
-                style={{
-                    overflowX: 'auto',
-                    scrollBehavior: 'smooth',
-                }}
-            >
+            <div className="carousel-card" ref={carouselRef}>
                 {products.map((product) => (
                     <div
                         className="card-item"
                         key={product.id}
-                        onClick={() => openModal(product)} // Открываем модальное окно при клике
+                        onClick={() => openModal(product)}
                     >
-                        <div
-                            className="card-item-photo"
-                            style={{
-                                backgroundImage: `url(${backendURL}${product.image_url})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundColor: 'unset',
-                            }}
-                        />
+                        <div className="card-item-photo">
+                            <img
+                                src={`${backendURL}${product.image_url}`}
+                                alt={product.name}
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    borderRadius: '5px',
+                                }}
+                            />
+                        </div>
                         <div className="card-name">{product.name}</div>
                         <Link 
-                          to="/services" 
-                          onClick={(e) => e.stopPropagation()} 
-                          className="card-button"
+                            to="/services" 
+                            onClick={(e) => e.stopPropagation()} 
+                            className="card-button"
                         >
-                          записаться к нам 🡢
+                            записаться к нам 🡢
                         </Link>
                     </div>
                 ))}
             </div>
 
-            {/* Модальное окно с кастомными стилями */}
             <Modal
-                title={selectedProduct?.name} // Название продукта в заголовке модального окна
+                title={selectedProduct?.name}
                 visible={isModalOpen}
-                onCancel={closeModal} // Закрытие окна
-                footer={null} // Убираем стандартные кнопки "ОК" и "Отмена"
-                width={900}  // Увеличиваем ширину модального окна
+                onCancel={closeModal}
+                footer={null}
+                width={900}
                 className="custom-modal"
             >
                 {selectedProduct && (
                     <div>
-                        <div
+                        <img
+                            src={`${backendURL}${selectedProduct.image_url}`}
+                            alt={selectedProduct.name}
                             style={{
-                                backgroundImage: `url(${backendURL}${selectedProduct.image_url})`,
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'center',
+                                width: '100%',
                                 height: '400px',
+                                objectFit: 'contain',
                                 marginBottom: '16px',
                             }}
                         />
