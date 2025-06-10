@@ -517,9 +517,10 @@ hr{
 }
 
 .fifth-text-colab{
+  margin-top: 20px;
   font-family: "Manrope", sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 149%;
   letter-spacing: -0.02em;
   color: #A8A8A8;
